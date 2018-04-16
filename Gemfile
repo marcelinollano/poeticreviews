@@ -1,0 +1,13 @@
+ruby '2.5.0'
+source 'https://rubygems.org'
+
+gem 'dotenv'
+gem 'sequel'
+gem 'sqlite3'
+gem 'json'
+gem 'curb'
+# gem 'rake'
+# gem 'sinatra'
+# gem 'nokogiri'
+# gem 'foreman'
+# gem 'puma'

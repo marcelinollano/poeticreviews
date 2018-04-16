@@ -1,4 +1,4 @@
-class Processor
+class Syllabes
 
   attr_accessor :word, :stressed_found, :stressed, :num_syl, :letter_accent, :positions
 
@@ -38,7 +38,7 @@ class Processor
           self.stressed = num_syl # monosyllables
         else # polysyllables
           end_letter = word[word.length - 1]
-          previuos_letter = word[word.length - 2] 
+          previuos_letter = word[word.length - 2]
 
           if (!is_consonant(end_letter) || end_letter == 'y') ||
             (end_letter =~ /[ns]/ && !is_consonant(previuos_letter))
@@ -139,7 +139,7 @@ class Processor
           end
         else
           pos += 1
-        end        
+        end
       # open vowel
       when /[aeo]/i
         if previous == 0
@@ -176,7 +176,7 @@ class Processor
 
         return pos
       end
-    end 
+    end
 
     # third vowel?
 
@@ -266,7 +266,7 @@ class Processor
         end
 
         if c2 == 'y' # y as vowel
-          if c1 =~ /[slrnc]/ 
+          if c1 =~ /[slrnc]/
             return pos
           end
 
