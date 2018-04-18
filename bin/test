@@ -26,6 +26,15 @@
 # puts translation
 
 # Syllabes
-require './lib/syllabes.rb'
-syllabes = Syllabes.new("catacroker")
-p syllabes.process.size
+# TODO: Needs to strip more than spaces
+# require './lib/syllabes.rb'
+# source = "el camión iba muy rápido"
+# word = Syllabes.new(source)
+# word.process
+# output = Array.new
+# word.syllabes.size.times do |position|
+#   starting = word.syllabes[position]
+#   ending   = word.syllabes[position+1].nil? ? -1 : word.syllabes[position+1] - 1
+#   output <<  source.slice(starting..ending)
+# end
+# puts "#{output.join('-').delete(' ')} (#{word.num_syl})"

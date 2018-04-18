@@ -1,5 +1,6 @@
-class Syllabes
+# Taken from https://github.com/vic/silabas.rb
 
+class Syllabes
   attr_accessor :word, :stressed_found, :stressed, :num_syl, :letter_accent, :positions
 
   def initialize(word)
