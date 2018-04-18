@@ -29,7 +29,7 @@ DB.create_table?(:reviews) do
   index    :id, :unique => true
 end
 
-DB.create_table?(:senteces) do
+DB.create_table?(:phrases) do
   primary_key :id
   Integer  :review_id
   Text     :text

@@ -2,21 +2,13 @@ require 'rubygems'
 require 'securerandom'
 require 'fileutils'
 
-desc('Populate the database')
-task(:populate) do
-  begin
-    `bundle exec ./bin/seed`
-  rescue Errno::ENOENT
-    puts '=====> Something went wrong'
-  end
-end
-
 desc('Resets the database')
 task(:reset) do
-  begin
+  puts '-----> Running reset task'
+  if File.exist?('db/db.sqlite3')
     File.delete('db/db.sqlite3')
-    puts '=====> The database was reseted'
-  rescue Errno::ENOENT
-    puts '=====> Nothing to reset'
+    puts '=====> Previous db was deleted'
   end
+  system('bin/migrate')
+  puts '=====> The db was created'
 end
