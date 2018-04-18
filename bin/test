@@ -1,9 +1,10 @@
 #!/usr/bin/env ruby
 
 # Sentiment
+# NOTE: Google is not great with passive-aggressive sentences
 # require "google/cloud/language"
 # language = Google::Cloud::Language.new
-# text = "Ni de coña"
+# text = "Lo has hecho muy bien para alguien con tu nivel de educación"
 # response = language.analyze_sentiment content: text, type: :PLAIN_TEXT
 # sentiment = response.document_sentiment
 # puts "Text: #{text}"
