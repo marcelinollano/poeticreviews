@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler'
+Bundler.require
+Dotenv.load
+
+DB = Sequel.connect("sqlite://db/db.sqlite3")
+
+DB.create_table?(:things) do
+  primary_key :id
+  String   :name
+  String   :url
+  DateTime :created_at
+  DateTime :updated_at
+  index    :id, :unique => true
+end
+
+DB.create_table?(:reviews) do
+  primary_key :id
+  Integer  :thing_id
+  Text     :text
+  Text     :english
+  String   :author
+  Float    :emotion_score
+  Float    :emotion_magnitude
+  DateTime :created_at
+  DateTime :updated_at
+  index    :id, :unique => true
+end
+
+DB.create_table?(:senteces) do
+  primary_key :id
+  Integer  :review_id
+  Text     :text
+  Text     :english
+  Integer  :syllabes
+  Float    :emotion_score
+  Float    :emotion_magnitude
+  Text     :tokens
+  DateTime :created_at
+  DateTime :updated_at
+  index    :id, :unique => true
+end
