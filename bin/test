@@ -24,3 +24,8 @@
 # translate = Google::Cloud::Translate.new(project_id: "poetry-slash")
 # translation = translate.translate "Hello world!", to: "es"
 # puts translation
+
+# Syllabes
+require './lib/syllabes.rb'
+syllabes = Syllabes.new("catacroker")
+p syllabes.process.size
