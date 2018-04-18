@@ -1,0 +1,90 @@
+{
+  "html_attributions": [],
+  "results": [
+    {
+      "formatted_address": "Calle del Dr. Fourquet, 33, 28012 Madrid, Spain",
+      "geometry": {
+        "location": {
+          "lat": 40.4070207,
+          "lng": -3.6990835
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.40840082989272,
+            "lng": -3.697747120107278
+          },
+          "southwest": {
+            "lat": 40.40570117010728,
+            "lng": -3.700446779892722
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png",
+      "id": "38e2bb2b983b26424d170552feb2936637180b6b",
+      "name": "Hola Coffee",
+      "opening_hours": {
+        "open_now": false,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 900,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/104348375204860074715/photos\"\u003eRoberto Lechado\u003c/a\u003e"
+          ],
+          "photo_reference":
+            "CmRaAAAAen4ptKk6qTRxBlEc83dTIje7DMgilHJdaCCq7k0wDsQj0611E_38IvNh1nF6EaJ_D4TiNghiNPmeuiqq5xjsqlkOKKN6Y9QE5S5JwrrfYzTgZ4snuwRDZc1A4_ZFkHOmEhAy_oH8RWLtmSGUvcLW1Jy_GhTi0VSN1EwulbIvl2RoO5SL6dSrTg",
+          "width": 1200
+        }
+      ],
+      "place_id": "ChIJz2ZMEywmQg0R0xzWYwP0OY8",
+      "rating": 4.6,
+      "reference":
+        "CmRbAAAAvOZoyveq1HG3maLVolJIyeF3c1F2-XOBtrWdE6gQcjZqFJp3neVjWarzcuINpGx8o5YD6Yqe_ecuiCgi61Lq9htF8q-aBZghZCvOQZaRPc6XabQUSkvVdH9Wh-4rVZwnEhA-Ht9YGzxID3Z6SlbG7gZWGhR97WgBN08gT2qqCQXUBai1lC1wtg",
+      "types": ["cafe", "store", "food", "point_of_interest", "establishment"]
+    },
+    {
+      "formatted_address": "27, Calle Aragón, 28320 Pinto, Madrid, Spain",
+      "geometry": {
+        "location": {
+          "lat": 40.24691,
+          "lng": -3.69461
+        },
+        "viewport": {
+          "northeast": {
+            "lat": 40.24815042989272,
+            "lng": -3.693390620107279
+          },
+          "southwest": {
+            "lat": 40.24545077010728,
+            "lng": -3.696090279892723
+          }
+        }
+      },
+      "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/cafe-71.png",
+      "id": "3b68758b2dab4dae11847547ab8b213ca75d200b",
+      "name": "Hola Cafe",
+      "opening_hours": {
+        "open_now": true,
+        "weekday_text": []
+      },
+      "photos": [
+        {
+          "height": 4160,
+          "html_attributions": [
+            "\u003ca href=\"https://maps.google.com/maps/contrib/108556540441746945926/photos\"\u003eMagui Huerta Guillén\u003c/a\u003e"
+          ],
+          "photo_reference":
+            "CmRaAAAAL0-6_6nipaf4NyWSpk1dLETDKKzj4nCmuEqcM5OAWg3fQVKO4g-klJgbNh5PCddZPyQ0AkVm-YVzKFGQZBxCpuM6z6M_1YI0t5sS6mWmTwOB-5UTd-b5FT_xTgsFWCfWEhDDsIBn13RgRIzU7PnS6S0iGhTD7cfdlJ0dfd1vnhG2qRwTMfX87w",
+          "width": 2080
+        }
+      ],
+      "place_id": "ChIJaSG5V3wfQg0RIMdzsayuWsQ",
+      "rating": 4.5,
+      "reference":
+        "CmRbAAAA0Nni_79fM73UVQJn6dOr11nwfuzXNjYa_RvBe_ekC2MwR4GNgqqfbVknfUIvJ7zGCQlxmmmA95b1ei76TFxxUVErFpV7cGaxWiCCZN93czNbnX-MQ4mNgXUDRO1dGLZAEhDT39oQIXMSCiMuH5oDed4lGhREkGytnJ6H-vaYxROL0DBFA1ZqHQ",
+      "types": ["cafe", "food", "point_of_interest", "establishment"]
+    }
+  ],
+  "status": "OK"
+}

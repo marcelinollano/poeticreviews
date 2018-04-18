@@ -1,10 +1,15 @@
 #!/usr/bin/env ruby
 
+require 'rubygems'
+require 'bundler'
+Bundler.require
+Dotenv.load
+
 # Sentiment
 # NOTE: Google is not great with passive-aggressive sentences
+# text = "Lo has hecho muy bien para alguien con tu nivel de educación"
 # require "google/cloud/language"
 # language = Google::Cloud::Language.new
-# text = "Lo has hecho muy bien para alguien con tu nivel de educación"
 # response = language.analyze_sentiment content: text, type: :PLAIN_TEXT
 # sentiment = response.document_sentiment
 # puts "Text: #{text}"
@@ -39,3 +44,17 @@
 #   output <<  source.slice(starting..ending)
 # end
 # puts "#{output.join('-').delete(' ')} (#{word.num_syl})"
+
+# Maps
+# Types https://developers.google.com/places/web-service/supported_types
+# params = {:query => 'hola cafe madrid', :type => 'cafe', :key => ENV['GMAPS_API_KEY']}
+# response = Curl.get('https://maps.googleapis.com/maps/api/place/textsearch/json', params)
+# place_id = JSON.parse(response.body_str)['results'][0]['place_id']
+# params = {:placeid => place_id, :key => ENV['GMAPS_API_KEY']}
+# response = Curl.get('https://maps.googleapis.com/maps/api/place/details/json', params)
+# puts response.body_str
+
+# file = File.open("test/fixtures/gmaps-place.json", "rb")
+# contents = file.read
+# json = JSON.parse(contents)
+# puts json['result']['reviews'].size
