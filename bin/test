@@ -5,6 +5,22 @@ require 'bundler'
 Bundler.require
 Dotenv.load
 
+Dir["./lib/*.rb"].each { |file| require file }
+
+
+puts Translate.to_english("This really is cool")
+
+# response = Split.to_sentences("This is the end of the world. And you know it.")
+# response.sentences.each do |sentence|
+#   p sentence.text.content
+# end
+
+# thing = Thing.first
+# thing.reviews.each do |review|
+#   puts review.text
+# end
+
+
 # Sentiment
 # NOTE: Google is not great with passive-aggressive sentences
 # text = "Lo has hecho muy bien para alguien con tu nivel de educación"

@@ -6,17 +6,21 @@ class Translate
   @client = Google::Cloud::Translate.new(project_id: ENV['GOOGLE_PROJECT_ID'])
 
   def self.detect(text)
-    language = @client.detect(text)
-    language
+    response = @client.detect(text)
+    response.language
   end
 
   def self.to_english(text)
-    translation = @client.translate(text, to: 'en')
-    translation
+    if self.detect(text) == 'es'
+      text = @client.translate(text, to: 'en')
+    end
+    text
   end
 
   def self.to_spanish(text)
-    traanslation = @client.translate(text, to: 'en')
-    translation
+    if self.detect(text) == 'en'
+      text = @client.translate(text, to: 'es')
+    end
+    text
   end
 end
