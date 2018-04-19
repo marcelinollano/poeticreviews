@@ -309,5 +309,4 @@ class Syllabes
   def is_consonant(c)
     c !~ /[aeiouáéíóüàèìò]/i
   end
-
 end

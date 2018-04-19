@@ -1,9 +1,4 @@
-#!/usr/bin/env ruby
-
-require 'rubygems'
-require 'bundler'
-Bundler.require
-Dotenv.load
+# Models
 
 DB = Sequel.connect("sqlite://db/db.sqlite3")
 
@@ -17,6 +12,13 @@ class Thing < Sequel::Model
     validates_presence([:name, :url])
     validates_unique([:name, :url])
   end
+
+  def self.save(params)
+    params = {:name =>  params[:name], :url => params[:url]}
+    thing  = find_or_create(:url => params[:url]) {|thing| thing.set(params)}
+    thing.update(params)
+    thing
+  end
 end
 
 class Review < Sequel::Model
@@ -29,6 +31,13 @@ class Review < Sequel::Model
     super
     validates_presence([:thing_id, :text, :author])
     validates_unique(:text)
+  end
+
+  def self.save(params)
+    params = {:thing_id =>  params[:thing_id], :text => params[:text], :author => params[:author]}
+    review = find_or_create(:text => params[:text]) {|review| review.set(params)}
+    review.update(params)
+    review
   end
 
   def before_create
@@ -50,6 +59,13 @@ class Phrase < Sequel::Model
     validates_unique(:text)
   end
 
+  def self.save(params)
+    params  = {:review_id =>  params[:review_id], :text => params[:text]}
+    phrases = self.find_or_create(:text => params[:text]) {|phrase| phrase.set(params)}
+    phrases.update(params)
+    phrases
+  end
+
   def before_create
     self.english           = nil
     self.syllabes          = nil
@@ -58,25 +74,4 @@ class Phrase < Sequel::Model
     self.tokens            = nil
     super
   end
-end
-
-def save_thing(params)
-  params = {:name =>  params[:name], :url => params[:url]}
-  thing  = Thing.find_or_create(:url => params[:url]) {|thing| thing.set(params)}
-  thing.update(params)
-  thing
-end
-
-def save_review(params)
-  params = {:thing_id =>  params[:thing_id], :text => params[:text], :author => params[:author]}
-  review = Review.find_or_create(:text => params[:text]) {|review| review.set(params)}
-  review.update(params)
-  review
-end
-
-def save_phrase(params)
-  params  = {:review_id =>  params[:review_id], :text => params[:text]}
-  phrases = Phrase.find_or_create(:text => params[:text]) {|phrase| phrase.set(params)}
-  phrases.update(params)
-  phrases
 end
