@@ -23,7 +23,7 @@ end
 
 class Review < Sequel::Model
   many_to_one :thing
-  one_to_many :phrases
+  one_to_many :sentences
   plugin(:timestamps, :update_on_create => true)
   plugin(:validation_helpers)
 
@@ -48,7 +48,7 @@ class Review < Sequel::Model
   end
 end
 
-class Phrase < Sequel::Model
+class Sentence < Sequel::Model
   many_to_one :review
   plugin(:timestamps, :update_on_create => true)
   plugin(:validation_helpers)
@@ -61,9 +61,9 @@ class Phrase < Sequel::Model
 
   def self.save(params)
     params  = {:review_id =>  params[:review_id], :text => params[:text]}
-    phrases = self.find_or_create(:text => params[:text]) {|phrase| phrase.set(params)}
-    phrases.update(params)
-    phrases
+    sentences = self.find_or_create(:text => params[:text]) {|sentence| sentence.set(params)}
+    sentences.update(params)
+    sentences
   end
 
   def before_create

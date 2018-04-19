@@ -1,4 +1,4 @@
-# Utils
+# Translate
 
 require "google/cloud/translate"
 
@@ -16,7 +16,7 @@ class Translate
   end
 
   def self.to_spanish(text)
-    translation = @client.translate(text, to: 'en')
+    traanslation = @client.translate(text, to: 'en')
     translation
   end
 end
