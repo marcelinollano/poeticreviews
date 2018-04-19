@@ -54,10 +54,10 @@ class Review < Sequel::Model
         :review_id           => id,
         :text                => sentence[:text],
         :english             => Translate.to_english(sentence[:text]),
-        :syllabes            => nil,
+        :syllables            => nil,
         :sentiment_score     => sentence[:score],
         :sentiment_magnitude => sentence[:magnitude],
-        :tokens              => sentence[:tokens].to_s
+        :syntax              => sentence[:tokens].to_s
       }
       Sentence.save(params)
     end

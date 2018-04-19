@@ -34,10 +34,11 @@ DB.create_table?(:sentences) do
   Integer  :review_id
   Text     :text
   Text     :english
-  Integer  :syllabes
+  Integer  :syllables
+  Integer  :syllables_count
   Float    :sentiment_score
   Float    :sentiment_magnitude
-  Text     :tokens
+  Text     :syntax
   DateTime :created_at
   DateTime :updated_at
   index    :id, :unique => true

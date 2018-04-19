@@ -7,47 +7,31 @@ Dotenv.load
 
 Dir["./lib/*.rb"].each { |file| require file }
 
+# p Extract.syllables('artesonado')
+
+
+client = Syllables.new("todo")
+client.process
+p client
+
+syllables => {:text => '', :stressed => true}
+
+
+
 # thing  = Thing.save({:name => "Hola Coffee", :url => "https://www.google.com/maps/place/Hola+Coffee/@40.4070207,-3.7012775,17z/data=!3m1!4b1!4m11!1m5!8m4!1e1!2s114312892379583351912!3m1!1e1!3m4!1s0xd42262c134c66cf:0x8f39f40363d61cd3!8m2!3d40.4070207!4d-3.6990835"})
 # review = Review.save({:thing_id => thing.id, :text => "Es una gran cafeteria, me mola todo.", :author => "Marce"})
 # sentence = Sentence.save({:review_id => review.id, :text => "Es una gran cafeteria"})
 
-
-# Sentiment
-# NOTE: Google is not great with passive-aggressive sentences
-# text = "Lo has hecho muy bien para alguien con tu nivel de educación"
-# require "google/cloud/language"
-# language = Google::Cloud::Language.new
-# response = language.analyze_sentiment content: text, type: :PLAIN_TEXT
-# sentiment = response.document_sentiment
-# puts "Text: #{text}"
-# puts "Score: #{sentiment.score}, #{sentiment.magnitude}"
-
-# Syntax
-# require "google/cloud/language"
-# text_content = "And to address the issues about decimals not being accurate."
-# language = Google::Cloud::Language.new
-# response = language.analyze_syntax content: text_content, type: :PLAIN_TEXT
-# sentences = response.sentences
-# tokens    = response.tokens
-# puts "Sentences: #{sentences.count}"
-# puts "Tokens: #{tokens.count}"
-
-# Translation
-# require "google/cloud/translate"
-# translate = Google::Cloud::Translate.new(project_id: "poetry-slash")
-# translation = translate.translate "Hello world!", to: "es"
-# puts translation
-
-# Syllabes
+# Syllables
 # TODO: Needs to strip more than spaces
-# require './lib/syllabes.rb'
+# require './lib/syllables.rb'
 # source = "el camión iba muy rápido"
-# word = Syllabes.new(source)
+# word = Syllables.new(source)
 # word.process
 # output = Array.new
-# word.syllabes.size.times do |position|
-#   starting = word.syllabes[position]
-#   ending   = word.syllabes[position+1].nil? ? -1 : word.syllabes[position+1] - 1
+# word.syllables.size.times do |position|
+#   starting = word.syllables[position]
+#   ending   = word.syllables[position+1].nil? ? -1 : word.syllables[position+1] - 1
 #   output <<  source.slice(starting..ending)
 # end
 # puts "#{output.join('-').delete(' ')} (#{word.num_syl})"
