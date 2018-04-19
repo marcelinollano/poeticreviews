@@ -8,3 +8,24 @@
 | Clearly Negative*	| "score": -0.6, "magnitude": 4.0 |
 | Neutral	          | "score": 0.1, "magnitude": 0.0  |
 | Mixed            	| "score": 0.0, "magnitude": 4.0  |
+
+### Query Google Maps
+
+```ruby
+# Types https://developers.google.com/places/web-service/supported_types
+params = {:query => 'hola cafe madrid', :type => 'cafe', :key => ENV['GOOGLE_MAPS_API_KEY']}
+response = Curl.get('https://maps.googleapis.com/maps/api/place/textsearch/json', params)
+place_id = JSON.parse(response.body_str)['results'][0]['place_id']
+params = {:placeid => place_id, :key => ENV['GOOGLE_MAPS_API_KEY']}
+response = Curl.get('https://maps.googleapis.com/maps/api/place/details/json', params)
+puts response.body_str
+```
+
+### Read JSON file
+
+```ruby
+file = File.open("test/fixtures/google-maps-places.json", "rb")
+contents = file.read
+json = JSON.parse(contents)
+puts json['result']['reviews'].size
+```

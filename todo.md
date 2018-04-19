@@ -5,6 +5,7 @@
 - [x] Translate text and store it
 - [x] Break apart text blobs
 - [x] Detect sentiment and store it
-- [ ] Save syllables 
+- [x] Save syllables
 - [ ] Nokogiri script to populate the database
-- [ ] Extract a gradient
+- [ ] Find structures to rhyme
+- [ ] Try a gradient

@@ -32,32 +32,33 @@ class Review < Sequel::Model
     validates_unique(:text)
   end
 
+  def before_create
+    sentiment                = Extract.sentiment(text)
+    self.text                = Translate.to_spanish(text)
+    self.sentiment_score     = sentiment[:score]
+    self.sentiment_magnitude = sentiment[:magnitude]
+    self.published_at        = published_at ? Sequel.string_to_datetime(published_at.to_s) : nil
+    super
+  end
+
   def self.save(params)
     review = find_or_create(:text => params[:text]) {|review| review.set(params)}
     review.update(params)
     review
   end
 
-  def before_create
-    sentiment = Extract.sentiment(text)
-    self.text                = Translate.to_spanish(text)
-    self.english             = Translate.to_english(text)
-    self.sentiment_score     = sentiment[:score]
-    self.sentiment_magnitude = sentiment[:magnitude]
-    super
-  end
-
   def after_create
-    sentences = Extract.sentences(text)
+    sentences = Extract.all(text)
     sentences.each do |sentence|
       params = {
         :review_id           => id,
         :text                => sentence[:text],
-        :english             => Translate.to_english(sentence[:text]),
-        :syllables            => nil,
-        :sentiment_score     => sentence[:score],
-        :sentiment_magnitude => sentence[:magnitude],
-        :syntax              => sentence[:tokens].to_s
+        :syllables           => sentence[:syllables].to_s,
+        :syllables_count     => sentence[:syllables_count],
+        :words               => sentence[:words].to_s,
+        :words_count         => sentence[:words_count],
+        :sentiment_score     => sentence[:sentiment_score],
+        :sentiment_magnitude => sentence[:sentiment_magnitude]
       }
       Sentence.save(params)
     end
@@ -77,8 +78,8 @@ class Sentence < Sequel::Model
   end
 
   def self.save(params)
-    sentences = self.find_or_create(:text => params[:text]) {|sentence| sentence.set(params)}
-    sentences.update(params)
-    sentences
+    sentence = find_or_create(:text => params[:text]) {|s| s.set(params)}
+    sentence.update(params)
+    sentence
   end
 end

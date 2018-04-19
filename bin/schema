@@ -20,10 +20,10 @@ DB.create_table?(:reviews) do
   primary_key :id
   Integer  :thing_id
   Text     :text
-  Text     :english
   String   :author
   Float    :sentiment_score
   Float    :sentiment_magnitude
+  DateTime :published_at
   DateTime :created_at
   DateTime :updated_at
   index    :id, :unique => true
@@ -33,12 +33,12 @@ DB.create_table?(:sentences) do
   primary_key :id
   Integer  :review_id
   Text     :text
-  Text     :english
-  Integer  :syllables
+  Text     :syllables
   Integer  :syllables_count
+  Text     :words
+  Integer  :words_count
   Float    :sentiment_score
   Float    :sentiment_magnitude
-  Text     :syntax
   DateTime :created_at
   DateTime :updated_at
   index    :id, :unique => true
