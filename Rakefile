@@ -9,6 +9,6 @@ task(:reset) do
     File.delete('db/db.sqlite3')
     puts '=====> Previous db was deleted'
   end
-  system('bin/migrate')
+  system('bin/schema')
   puts '=====> The db was created'
 end

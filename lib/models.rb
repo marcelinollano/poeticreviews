@@ -14,7 +14,6 @@ class Thing < Sequel::Model
   end
 
   def self.save(params)
-    params = {:name =>  params[:name], :url => params[:url]}
     thing  = find_or_create(:url => params[:url]) {|thing| thing.set(params)}
     thing.update(params)
     thing
@@ -34,16 +33,34 @@ class Review < Sequel::Model
   end
 
   def self.save(params)
-    params = {:thing_id =>  params[:thing_id], :text => params[:text], :author => params[:author]}
     review = find_or_create(:text => params[:text]) {|review| review.set(params)}
     review.update(params)
     review
   end
 
   def before_create
-    self.english           = nil
-    self.emotion_score     = nil
-    self.emotion_magnitude = nil
+    sentiment = Extract.sentiment(text)
+    self.text                = Translate.to_spanish(text)
+    self.english             = Translate.to_english(text)
+    self.sentiment_score     = sentiment[:score]
+    self.sentiment_magnitude = sentiment[:magnitude]
+    super
+  end
+
+  def after_create
+    sentences = Extract.sentences(text)
+    sentences.each do |sentence|
+      params = {
+        :review_id           => id,
+        :text                => sentence[:text],
+        :english             => Translate.to_english(sentence[:text]),
+        :syllabes            => nil,
+        :sentiment_score     => sentence[:score],
+        :sentiment_magnitude => sentence[:magnitude],
+        :tokens              => sentence[:tokens].to_s
+      }
+      Sentence.save(params)
+    end
     super
   end
 end
@@ -60,18 +77,8 @@ class Sentence < Sequel::Model
   end
 
   def self.save(params)
-    params  = {:review_id =>  params[:review_id], :text => params[:text]}
     sentences = self.find_or_create(:text => params[:text]) {|sentence| sentence.set(params)}
     sentences.update(params)
     sentences
-  end
-
-  def before_create
-    self.english           = nil
-    self.syllabes          = nil
-    self.emotion_score     = nil
-    self.emotion_magnitude = nil
-    self.tokens            = nil
-    super
   end
 end

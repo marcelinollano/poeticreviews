@@ -22,8 +22,8 @@ DB.create_table?(:reviews) do
   Text     :text
   Text     :english
   String   :author
-  Float    :emotion_score
-  Float    :emotion_magnitude
+  Float    :sentiment_score
+  Float    :sentiment_magnitude
   DateTime :created_at
   DateTime :updated_at
   index    :id, :unique => true
@@ -35,8 +35,8 @@ DB.create_table?(:sentences) do
   Text     :text
   Text     :english
   Integer  :syllabes
-  Float    :emotion_score
-  Float    :emotion_magnitude
+  Float    :sentiment_score
+  Float    :sentiment_magnitude
   Text     :tokens
   DateTime :created_at
   DateTime :updated_at

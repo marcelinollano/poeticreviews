@@ -5,14 +5,14 @@ require "google/cloud/language"
 class Extract
   @client = Google::Cloud::Language.new
 
-  # def self.emotion(text)
-  #   response = @client.analyze_syntax(:content => text, :type => :PLAIN_TEXT)
-  #   emotion = {
-  #     :score => response.sentiment.score,
-  #     :magnitude => response.sentiment.magnitude
-  #   }
-  #   emotion
-  # end
+  def self.sentiment(text)
+    response = @client.analyze_sentiment(:content => text, :type => :PLAIN_TEXT)
+    sentiment = {
+      :score => response.document_sentiment.score,
+      :magnitude => response.document_sentiment.magnitude
+    }
+    sentiment
+  end
 
   def self.syntax(text)
     response = @client.analyze_syntax(:content => text, :type => :PLAIN_TEXT)

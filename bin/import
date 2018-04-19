@@ -7,6 +7,5 @@ Dotenv.load
 
 Dir["./lib/*.rb"].each { |file| require file }
 
-# thing  = Thing.save({:name => "Hola Coffee", :url => "https://www.google.com/maps/place/Hola+Coffee/@40.4070207,-3.7012775,17z/data=!3m1!4b1!4m11!1m5!8m4!1e1!2s114312892379583351912!3m1!1e1!3m4!1s0xd42262c134c66cf:0x8f39f40363d61cd3!8m2!3d40.4070207!4d-3.6990835"})
-# review = Review.save({:thing_id => thing.id, :text => "Es una gran cafeteria, me mola todo.", :author => "Marce"})
-# sentence = Sentence.save({:review_id => review.id, :text => "Es una gran cafeteria"})
+thing  = Thing.save({:name => "Hello Coffee", :url => "https://www.google.com/maps/place/Hola+Coffee"})
+review = Review.save({:thing_id => thing.id, :text => "Es una gran cafeteria, me mola todo.", :author => "Marce"})
