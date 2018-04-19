@@ -53,9 +53,9 @@ class Review < Sequel::Model
       params = {
         :review_id           => id,
         :text                => sentence[:text],
-        :syllables           => sentence[:syllables].to_s,
+        :syllables_json      => sentence[:syllables].to_json,
         :syllables_count     => sentence[:syllables_count],
-        :words               => sentence[:words].to_s,
+        :words_json          => sentence[:words].to_json,
         :words_count         => sentence[:words_count],
         :sentiment_score     => sentence[:sentiment_score],
         :sentiment_magnitude => sentence[:sentiment_magnitude]
@@ -75,6 +75,16 @@ class Sentence < Sequel::Model
     super
     validates_presence([:review_id, :text])
     validates_unique(:text)
+  end
+
+  def syllables
+    json = JSON.parse(syllables_json)
+    json
+  end
+
+  def words
+    json = JSON.parse(words_json)
+    json
   end
 
   def self.save(params)

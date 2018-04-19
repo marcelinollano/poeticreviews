@@ -1,4 +1,4 @@
-# Taken from https://github.com/vic/silabas.rb
+# Syllables <https://github.com/vic/silabas.rb>
 
 class Syllables
   attr_accessor :word, :stressed_found, :stressed, :num_syl, :letter_accent, :positions

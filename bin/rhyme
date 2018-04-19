@@ -6,3 +6,5 @@ Bundler.require
 Dotenv.load
 
 Dir["./lib/*.rb"].each { |file| require file }
+
+p Sentence.first.syllables

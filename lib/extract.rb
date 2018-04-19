@@ -61,7 +61,6 @@ class Extract
     document = {:content => text, :type => :PLAIN_TEXT}
     features = {:extract_document_sentiment => true, :extract_syntax => true}
     response = @client.annotate_text(document, features)
-
     sentences = Array.new
     response.sentences.each do |s|
       syllables = syllables(s.text.content)
