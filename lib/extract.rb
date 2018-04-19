@@ -66,10 +66,10 @@ class Extract
       syllables = syllables(s.text.content)
       sentence = {
         :text                => s.text.content,
-        :syllables           => syllables(s.text.content),
-        :syllables_count     => syllables.flatten.size,
         :words               => syntax(s.text.content),
         :words_count         => syllables.size,
+        :syllables           => syllables(s.text.content),
+        :syllables_count     => syllables.flatten.size,
         :sentiment_score     => s.sentiment.score,
         :sentiment_magnitude => s.sentiment.magnitude
       }

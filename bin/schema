@@ -33,10 +33,10 @@ DB.create_table?(:sentences) do
   primary_key :id
   Integer  :review_id
   Text     :text
-  Text     :syllables_json
-  Integer  :syllables_count
   Text     :words_json
   Integer  :words_count
+  Text     :syllables_json
+  Integer  :syllables_count
   Float    :sentiment_score
   Float    :sentiment_magnitude
   DateTime :created_at
