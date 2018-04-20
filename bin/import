@@ -18,7 +18,7 @@ thing  = Thing.save({
   :url => url
 })
 
-reviews = Scrap.google_maps(data)
+reviews = GoogleMaps.scrap(data)
 
 reviews.each do |review|
   puts "-----> Review by #{review[:author]}"

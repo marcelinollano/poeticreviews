@@ -29,6 +29,13 @@ class Extract
     sentiment
   end
 
+  # Multilingual
+  def self.split_more(text)
+    text = text.gsub(/[.…?,;!]/, '\0|')
+    text = text.split('|')
+    text
+  end
+
   # Spanish
   def self.syllables_from_word(word)
     client = Syllables.new(word)

@@ -9,18 +9,17 @@ class GoogleMaps
 
   def self.cleanup(text)
     text = CGI.unescapeHTML(text)
-    text = text.split("(Original)")[-1]
-    text.gsub!("\n\n\n", " ")
-    text.gsub!("\n\n", " ")
-    text.gsub!("\n", " ")
-    text.gsub!("   ", " ")
-    text.gsub!("  ", " ")
-    text.gsub!("....", "...")
-    text.gsub!(" ...", "")
+    text = text.split("(Original)")[-1] if text.scan("(Original)")
+    text.gsub!(/[\n]{1,}/, " ")
+    text.gsub!("/[ ]{2,}/", " ")
+    text.gsub!(/[.]{2,}/, "…")
+    text.gsub!(" …", "…")
     text.gsub!(" .", ".")
     text.gsub!(" ,", ",")
-    text.gsub!(" ?", "?")
+    text.gsub!("!.", "!")
+    text.gsub!(" !", "!")
     text.gsub!("?.", "?")
+    text.gsub!(" ?", "?")
     text.strip!
     text
   end
