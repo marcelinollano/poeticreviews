@@ -37,7 +37,7 @@ class Review < Sequel::Model
     self.text                = Translate.to_spanish(text)
     self.sentiment_score     = sentiment[:score]
     self.sentiment_magnitude = sentiment[:magnitude]
-    self.published_at        = published_at ? Sequel.string_to_datetime(published_at.to_s) : nil
+    self.published_at        = published_at ? Chronic.parse(published_at.to_s) : nil
     super
   end
 

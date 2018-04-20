@@ -7,14 +7,27 @@ Dotenv.load
 
 Dir["./lib/*.rb"].each { |file| require file }
 
+name = 'Puerta del Sol'
+url  = 'https://www.google.com/maps/place/Puerta+del+Sol/@40.4169514,-3.7057225,17z/data=!3m1!4b1!4m5!3m4!1s0xd42287e19e23f5f:0xcec2a0e4d9bed6fb!8m2!3d40.4169473!4d-3.7035285'
+data = './data/plaza-del-sol-downer.html'
+
+puts "=====> Import #{name}"
+
 thing  = Thing.save({
-  :name => "Hello Coffee",
-  :url => "https://www.google.com/maps/place/Hola+Coffee"
+  :name => name,
+  :url => url
 })
 
-review = Review.save({
-  :thing_id => thing.id,
-  :text => "Es una gran cafeteria, me mola todo. Un poco cara.",
-  :author => "Marce",
-  :published_at => "27 Jan 1984"
-})
+reviews = Scrap.google_maps(data)
+
+reviews.each do |review|
+  puts "-----> Review by #{review[:author]}"
+  review = Review.save({
+    :thing_id => thing.id,
+    :text => review[:text],
+    :author => review[:author],
+    :published_at => review[:published_at]
+  })
+end
+
+puts "-----> #{reviews.size} were imported"

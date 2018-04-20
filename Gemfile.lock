@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
+    chronic (0.10.2)
     concurrent-ruby (1.0.5)
     curb (0.9.4)
     declarative (0.0.10)
@@ -192,6 +193,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  chronic
   curb
   dotenv
   google-cloud
