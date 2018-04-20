@@ -63,8 +63,8 @@ class Review < Sequel::Model
       Sentence.save(params)
     end
     sentences = Extract.split!(text)
-    senteces.each do |sentece|
-      sentence = Extract.first(sentece)
+    sentences.each do |sentence|
+      sentence = Extract.first(sentence)
       params = {
         :review_id           => id,
         :text                => sentence[:text],
