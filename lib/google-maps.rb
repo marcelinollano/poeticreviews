@@ -9,7 +9,8 @@ class GoogleMaps
 
   def self.cleanup(text)
     text = CGI.unescapeHTML(text)
-    text = text.split("(Original)")[-1] if text.scan("(Original)")
+    text = text.split("(Original)")[-1]      if text.scan("(Original)")
+    text = text.split("(Texto original)")[0] if text.scan("(Texto original)")
     text.gsub!(/[\n]{1,}/, " ")
     text.gsub!("/[ ]{2,}/", " ")
     text.gsub!(/[.]{2,}/, "…")

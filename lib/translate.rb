@@ -11,7 +11,7 @@ class Translate
   end
 
   def self.to_english(text)
-    if self.detect(text) == 'es'
+    if self.detect(text) != 'en'
       text = @client.translate(text, to: 'en')
       text = CGI.unescapeHTML(text)
     end
@@ -19,7 +19,7 @@ class Translate
   end
 
   def self.to_spanish(text)
-    if self.detect(text) == 'en'
+    if self.detect(text) != 'es'
       text = @client.translate(text, to: 'es')
       text = CGI.unescapeHTML(text)
     end
