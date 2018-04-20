@@ -9,7 +9,7 @@ class GoogleMaps
 
   def self.cleanup(text)
     text = CGI.unescapeHTML(text)
-    text = text.split("(Original)")[-1]      if text.scan("(Original)")
+    text = text.split("(Original)")[-1] if text.scan("(Original)")
     text = text.split("(Texto original)")[0] if text.scan("(Texto original)")
     text.gsub!(/[\n]{1,}/, " ")
     text.gsub!("/[ ]{2,}/", " ")
@@ -32,15 +32,13 @@ class GoogleMaps
     nodes        = content.css('.section-review-content')
     reviews = Array.new
     nodes.each do |node|
-      text = node.css('.section-review-text').text
+      text         = node.css('.section-review-text').text
       unless text.empty?
         text         = cleanup(text)
         author       = node.css('.section-review-title span').text
-        published_at = Chronic.parse(node.css('.section-review-publish-date').text)
         review = {
           :text         => text,
-          :author       => author,
-          :published_at => published_at
+          :author       => author
         }
         reviews << review
       end

@@ -26,8 +26,7 @@ begin
     review = Review.save({
       :thing_id => thing.id,
       :text => review[:text],
-      :author => review[:author],
-      :published_at => review[:published_at]
+      :author => review[:author]
     })
   end
 rescue Google::Cloud::ResourceExhaustedError

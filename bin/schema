@@ -23,7 +23,6 @@ DB.create_table?(:reviews) do
   String   :author
   Float    :sentiment_score
   Float    :sentiment_magnitude
-  DateTime :published_at
   DateTime :created_at
   DateTime :updated_at
   index    :id, :unique => true

@@ -34,10 +34,9 @@ class Review < Sequel::Model
 
   def before_create
     sentiment                = Extract.sentiment(text)
-    self.text                = Translate.to_spanish(text)
+    self.text                = text
     self.sentiment_score     = sentiment[:score]
     self.sentiment_magnitude = sentiment[:magnitude]
-    self.published_at        = published_at ? Chronic.parse(published_at.to_s) : nil
     super
   end
 
