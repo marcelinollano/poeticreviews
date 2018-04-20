@@ -23,6 +23,8 @@ class GoogleMaps
     text.gsub!(" !", "!")
     text.gsub!("?.", "?")
     text.gsub!(" ?", "?")
+
+
     text.strip!
     text
   end
