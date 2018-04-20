@@ -8,6 +8,7 @@
 - [x] Save syllables
 - [x] Nokogiri script to populate the database
 - [x] Translate just to Spanish
-- [ ] Divide by commas too
+- [x] Divide by commas too
+- [ ] Seed the database
 - [ ] Create templates to rhyme
 - [ ] Try a gradient

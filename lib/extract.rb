@@ -7,25 +7,36 @@ class Extract
 
   # Multilingual
   def self.syntax(text)
-    response = @client.analyze_syntax(:content => text, :type => :PLAIN_TEXT)
-    tokens = Array.new
-    response.tokens.each do |t|
-      token = {
-        :text => t.text.content,
-        :tag  => t.part_of_speech.tag
-      }
-      tokens << token
+    begin
+      response = @client.analyze_syntax(:content => text, :type => :PLAIN_TEXT)
+      tokens = Array.new
+      response.tokens.each do |t|
+        token = {
+          :text => t.text.content,
+          :tag  => t.part_of_speech.tag
+        }
+        tokens << token
+      end
+      tokens
+    rescue
+      nil
     end
-    tokens
   end
 
   # Multilingual
   def self.sentiment(text)
-    response = @client.analyze_sentiment(:content => text, :type => :PLAIN_TEXT)
-    sentiment = {
-      :score => response.document_sentiment.score,
-      :magnitude => response.document_sentiment.magnitude
-    }
+    begin
+      response = @client.analyze_sentiment(:content => text, :type => :PLAIN_TEXT)
+      sentiment = {
+        :score => response.document_sentiment.score,
+        :magnitude => response.document_sentiment.magnitude
+      }
+    rescue
+      sentiment = {
+        :score => 0,
+        :magnitude => 0
+      }
+    end
     sentiment
   end
 
@@ -65,42 +76,54 @@ class Extract
 
   # Spanish
   def self.all(text)
-    document = {:content => text, :type => :PLAIN_TEXT}
-    features = {:extract_document_sentiment => true, :extract_syntax => true}
-    response = @client.annotate_text(document, features)
-    sentences = Array.new
-    response.sentences.each do |s|
-      syllables = syllables(s.text.content)
-      sentence = {
-        :text                => s.text.content,
-        :words               => syntax(s.text.content),
-        :words_count         => syllables.size,
-        :syllables           => syllables(s.text.content),
-        :syllables_count     => syllables.flatten.size,
-        :sentiment_score     => s.sentiment.score,
-        :sentiment_magnitude => s.sentiment.magnitude
-      }
-      sentences << sentence
+    begin
+      document = {:content => text, :type => :PLAIN_TEXT}
+      features = {:extract_document_sentiment => true, :extract_syntax => true}
+      response = @client.annotate_text(document, features)
+      sentences = Array.new
+      response.sentences.each do |s|
+        unless s.nil?
+          syllables = syllables(s.text.content)
+          sentence = {
+            :text                => s.text.content,
+            :words               => syntax(s.text.content),
+            :words_count         => syllables.size,
+            :syllables           => syllables(s.text.content),
+            :syllables_count     => syllables.flatten.size,
+            :sentiment_score     => s.sentiment.score,
+            :sentiment_magnitude => s.sentiment.magnitude
+          }
+          sentences << sentence
+        end
+      end
+      sentences
+    rescue
+      nil
     end
-    sentences
   end
 
   # Spanish
   def self.first(text)
-    document = {:content => text, :type => :PLAIN_TEXT}
-    features = {:extract_document_sentiment => true, :extract_syntax => true}
-    response = @client.annotate_text(document, features)
-    s = response.sentences.first
-    syllables = syllables(s.text.content)
-    sentence = {
-      :text                => s.text.content,
-      :words               => syntax(s.text.content),
-      :words_count         => syllables.size,
-      :syllables           => syllables(s.text.content),
-      :syllables_count     => syllables.flatten.size,
-      :sentiment_score     => s.sentiment.score,
-      :sentiment_magnitude => s.sentiment.magnitude
-    }
-    sentence
+    begin
+      document = {:content => text, :type => :PLAIN_TEXT}
+      features = {:extract_document_sentiment => true, :extract_syntax => true}
+      response = @client.annotate_text(document, features)
+      s = response.sentences.first
+      unless s.nil?
+        syllables = syllables(s.text.content)
+        sentence = {
+          :text                => s.text.content,
+          :words               => syntax(s.text.content),
+          :words_count         => syllables.size,
+          :syllables           => syllables(s.text.content),
+          :syllables_count     => syllables.flatten.size,
+          :sentiment_score     => s.sentiment.score,
+          :sentiment_magnitude => s.sentiment.magnitude
+        }
+        sentence
+      end
+    rescue
+      nil
+    end
   end
 end

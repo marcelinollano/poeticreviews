@@ -48,35 +48,44 @@ class Review < Sequel::Model
   end
 
   def after_create
+    text      = Translate.to_spanish(text)
     sentences = Extract.all(text)
-    sentences.each do |sentence|
-      params = {
-        :review_id           => id,
-        :text                => sentence[:text],
-        :words_json          => sentence[:words].to_json,
-        :words_count         => sentence[:words_count],
-        :syllables_json      => sentence[:syllables].to_json,
-        :syllables_count     => sentence[:syllables_count],
-        :sentiment_score     => sentence[:sentiment_score],
-        :sentiment_magnitude => sentence[:sentiment_magnitude]
-      }
-      Sentence.save(params)
+    unless sentences.nil?
+      sentences.each do |sentence|
+        params = {
+          :review_id           => id,
+          :text                => sentence[:text].capitalize,
+          :words_json          => sentence[:words].to_json,
+          :words_count         => sentence[:words_count],
+          :syllables_json      => sentence[:syllables].to_json,
+          :syllables_count     => sentence[:syllables_count],
+          :sentiment_score     => sentence[:sentiment_score],
+          :sentiment_magnitude => sentence[:sentiment_magnitude]
+        }
+        Sentence.save(params) unless params[:text].empty?
+      end
     end
-    sentences = Extract.split!(text)
-    sentences.each do |sentence|
-      sentence = Extract.first(sentence)
-      params = {
-        :review_id           => id,
-        :text                => sentence[:text],
-        :words_json          => sentence[:words].to_json,
-        :words_count         => sentence[:words_count],
-        :syllables_json      => sentence[:syllables].to_json,
-        :syllables_count     => sentence[:syllables_count],
-        :sentiment_score     => sentence[:sentiment_score],
-        :sentiment_magnitude => sentence[:sentiment_magnitude]
-      }
-      Sentence.save(params)
-    end
+
+    # Further break sentences
+    # sentences = Extract.split!(text)
+    # unless sentences.nil?
+    #   sentences.each do |sentence|
+    #     sentence = Extract.first(sentence)
+    #     unless sentence.nil?
+    #       params = {
+    #         :review_id           => id,
+    #         :text                => sentence[:text].capitalize,
+    #         :words_json          => sentence[:words].to_json,
+    #         :words_count         => sentence[:words_count],
+    #         :syllables_json      => sentence[:syllables].to_json,
+    #         :syllables_count     => sentence[:syllables_count],
+    #         :sentiment_score     => sentence[:sentiment_score],
+    #         :sentiment_magnitude => sentence[:sentiment_magnitude]
+    #       }
+    #       Sentence.save(params)
+    #     end
+    #   end
+    # end
     super
   end
 end
