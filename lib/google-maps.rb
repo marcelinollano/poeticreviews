@@ -1,27 +1,31 @@
 # Scrap
 
-class Scrap
-  def self.cleanup(text)
-    text = CGI.unescapeHTML(text)
-    text.gsub!("\n\n\n", ' ')
-    text.gsub!("\n\n", ' ')
-    text.gsub!("\n", ' ')
-    text.gsub!("   ", ' ')
-    text.gsub!("  ", ' ')
-    text.gsub!(" ...", '')
-    text.gsub!("(Translated by Google)", '')
-    text.gsub!("(Original)", '')
-    text.strip!
-    text
-  end
-
+class GoogleMaps
   def self.read(file)
     file = File.open(file, "rb")
     content = Nokogiri::HTML(file.read)
     content
   end
 
-  def self.google_maps(html)
+  def self.cleanup(text)
+    text = CGI.unescapeHTML(text)
+    text = text.split("(Original)")[-1]
+    text.gsub!("\n\n\n", " ")
+    text.gsub!("\n\n", " ")
+    text.gsub!("\n", " ")
+    text.gsub!("   ", " ")
+    text.gsub!("  ", " ")
+    text.gsub!("....", "...")
+    text.gsub!(" ...", "")
+    text.gsub!(" .", ".")
+    text.gsub!(" ,", ",")
+    text.gsub!(" ?", "?")
+    text.gsub!("?.", "?")
+    text.strip!
+    text
+  end
+
+  def self.scrap(html)
     content      = read(html)
     nodes        = content.css('.section-review-content')
     reviews = Array.new

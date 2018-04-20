@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'bundler'
+Bundler.require
+Dotenv.load
+
+Dir["./lib/*.rb"].each { |file| require file }
+
+text = '(Translated by Google) Monumental but .... Cleaning of the Puerta del Sol and Madrid. Do we need the town hall to commit?
+
+(Original)
+Monumental pero....Limpieza de la puerta del Sol y de Madrid. ¿Hace falta que el ayuntamiento se comprometa ?.'
+p GoogleMaps.cleanup(text)
+# output = Extract.all()
+
+# p output

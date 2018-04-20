@@ -6,6 +6,8 @@
 - [x] Break apart text blobs
 - [x] Detect sentiment and store it
 - [x] Save syllables
-- [ ] Nokogiri script to populate the database
-- [ ] Find structures to rhyme
+- [x] Nokogiri script to populate the database
+- [x] Translate just to Spanish
+- [ ] Divide by commas too
+- [ ] Create templates to rhyme
 - [ ] Try a gradient
