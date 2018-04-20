@@ -9,6 +9,8 @@
 - [x] Nokogiri script to populate the database
 - [x] Translate just to Spanish
 - [x] Divide by commas too
-- [ ] Seed the database
-- [ ] Create templates to rhyme
-- [ ] Try a gradient
+- [ ] Seed the database with Spanish data
+- [ ] Create assonance rhyme
+- [ ] Create consonance rhyme
+- [ ] Try sentiment gradient
+- [ ] Pretty print
