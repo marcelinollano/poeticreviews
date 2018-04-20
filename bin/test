@@ -1,19 +1,19 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
-require 'bundler'
-Bundler.require
-Dotenv.load
+# require 'rubygems'
+# require 'bundler'
+# Bundler.require
+# Dotenv.load
+#
+# Dir["./lib/*.rb"].each { |file| require file }
 
-Dir["./lib/*.rb"].each { |file| require file }
+str = "mión"
+out = str.scan(/[aeouiáéíóú]/)
 
-text = "(Traducido por Google) Un lugar realmente genial y pintoresco. Recuerda el pueblo de codorniz Giladi todo esto al por mayor. Caminar allí y sentarme en algún lugar para beber algo. Entre las tiendas de venta al por mayor hay tiendas de diseño realmente especializadas.
+str = str.gsub('á', 'a')
+str = str.gsub('é', 'e')
+str = str.gsub('í', 'i')
+str = str.gsub('ó', 'o')
+str = str.gsub('ú', 'u')
 
-(Texto original)
-מקום ממש מגניב ציורי. מזכיר את כפר גילעדי שליו הכל זה סיטונאות. כדי לטייל שם ולשבת באיזה מקום לשתות משהו. בין החנויות של סיטונאות יש חנויות עיצוב מיוחדות ממש.
-
-"
-
-text = GoogleMaps.cleanup(text)
-
-p text
+p str

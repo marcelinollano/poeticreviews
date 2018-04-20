@@ -7,14 +7,12 @@ Dotenv.load
 
 Dir["./lib/*.rb"].each { |file| require file }
 
-# sentences = Sentence.where(:syllables_count => 8)
-# sentences.each do |sentence|
-#   p "#{sentence.text} #{sentence.syllables.flatten[-2]} #{sentence.syllables.flatten[-1]}"
-# end
+sentences = Sentence.where(:syllables_count => 8)
+sentences.each do |sentence|
+  p "#{sentence.text} #{sentence.syllables.flatten[-2]} #{sentence.syllables.flatten[-1]}"
+end
 
 # sentences = Sentence.where(Sequel.like(:text, '%20%'))
 # sentences.each do |sentence|
 #   p "#{sentence.text}"
 # end
-
-p Humanize.new.numbers('6')

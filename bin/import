@@ -7,32 +7,36 @@ Dotenv.load
 
 Dir["./lib/*.rb"].each { |file| require file }
 
-name = 'Puerta del Sol'
-url  = 'https://www.google.com/maps/place/Puerta+del+Sol/@40.4169514,-3.7057225,17z/data=!3m1!4b1!4m5!3m4!1s0xd42287e19e23f5f:0xcec2a0e4d9bed6fb!8m2!3d40.4169473!4d-3.7035285'
-data = './data/puerta-del-sol/upper.html'
+name  = 'Puerta del Sol'
+url   = 'https://www.google.com/maps/place/Puerta+del+Sol/@40.4169514,-3.7057225,17z/data=!3m1!4b1!4m5!3m4!1s0xd42287e19e23f5f:0xcec2a0e4d9bed6fb!8m2!3d40.4169473!4d-3.7035285'
+files = ['./data/puerta-del-sol/upper.html',
+         './data/puerta-del-sol/downer.html',
+         './data/puerta-del-sol/helpful.html']
 
-puts "=====> Import #{name}"
+files.each do |file|
+  puts "=====> Import #{name}"
 
-thing  = Thing.save({
-  :name => name,
-  :url => url
-})
+  thing  = Thing.save({
+    :name => name,
+    :url => url
+  })
 
-reviews = GoogleMaps.scrap(data)
+  reviews = GoogleMaps.scrap(file)
 
-begin
-  reviews.each do |review|
-    puts "-----> Review by #{review[:author]}"
-    review = Review.save({
-      :thing_id => thing.id,
-      :text => review[:text],
-      :author => review[:author]
-    })
+  begin
+    reviews.each do |review|
+      puts "-----> Review by #{review[:author]}"
+      review = Review.save({
+        :thing_id => thing.id,
+        :text => review[:text],
+        :author => review[:author]
+      })
+    end
+  rescue Google::Cloud::ResourceExhaustedError
+    puts "-----> Waiting to retry..."
+    sleep(0.5)
+    retry
   end
-rescue Google::Cloud::ResourceExhaustedError
-  puts "-----> Waiting to retry..."
-  sleep(0.5)
-  retry
-end
 
-puts "-----> #{reviews.size} were imported"
+  puts "-----> #{reviews.size} were imported"
+end
