@@ -30,8 +30,8 @@ class Extract
   end
 
   # Multilingual
-  def self.split_more(text)
-    text = text.gsub(/[.…?,;!]/, '\0|')
+  def self.split!(text)
+    text = text.gsub(/[.,;?!…)]/, '\0|')
     text = text.split('|')
     text
   end
@@ -83,5 +83,24 @@ class Extract
       sentences << sentence
     end
     sentences
+  end
+
+  # Spanish
+  def self.first(text)
+    document = {:content => text, :type => :PLAIN_TEXT}
+    features = {:extract_document_sentiment => true, :extract_syntax => true}
+    response = @client.annotate_text(document, features)
+    s = response.sentences.first
+    syllables = syllables(s.text.content)
+    sentence = {
+      :text                => s.text.content,
+      :words               => syntax(s.text.content),
+      :words_count         => syllables.size,
+      :syllables           => syllables(s.text.content),
+      :syllables_count     => syllables.flatten.size,
+      :sentiment_score     => s.sentiment.score,
+      :sentiment_magnitude => s.sentiment.magnitude
+    }
+    sentence
   end
 end

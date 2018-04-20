@@ -13,7 +13,9 @@ class GoogleMaps
     text.gsub!(/[\n]{1,}/, " ")
     text.gsub!("/[ ]{2,}/", " ")
     text.gsub!(/[.]{2,}/, "…")
-    text.gsub!(" …", "…")
+    text.gsub!("(Traducido por Google)", "")
+    text.gsub!("(Translated by Google)", "")
+    text.gsub!(" …", "")
     text.gsub!(" .", ".")
     text.gsub!(" ,", ",")
     text.gsub!("!.", "!")
@@ -29,15 +31,18 @@ class GoogleMaps
     nodes        = content.css('.section-review-content')
     reviews = Array.new
     nodes.each do |node|
-      text         = cleanup(node.css('.section-review-text').text)
-      author       = node.css('.section-review-title span').text
-      published_at = Chronic.parse(node.css('.section-review-publish-date').text)
-      review = {
-        :text         => text,
-        :author       => author,
-        :published_at => published_at
-      }
-      reviews << review unless text.empty?
+      text = node.css('.section-review-text').text
+      unless text.empty?
+        text         = cleanup(text)
+        author       = node.css('.section-review-title span').text
+        published_at = Chronic.parse(node.css('.section-review-publish-date').text)
+        review = {
+          :text         => text,
+          :author       => author,
+          :published_at => published_at
+        }
+        reviews << review
+      end
     end
     reviews
   end
