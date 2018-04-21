@@ -74,6 +74,25 @@ class Extract
     syllables
   end
 
+  def self.find_vowels(str)
+    vowels = str.scan(/[aeouiáéíóú]/).join('')
+    vowels
+  end
+
+  # Spanish
+  def self.assonance(syllables)
+    vowels = String.new
+    vowels << find_vowels(syllables.flatten[-2][:text])
+    vowels << "|"
+    vowels << find_vowels(syllables.flatten[-1][:text])
+    vowels.gsub!('á', 'a')
+    vowels.gsub!('é', 'e')
+    vowels.gsub!('í', 'i')
+    vowels.gsub!('ó', 'o')
+    vowels.gsub!('ú', 'u')
+    vowels
+  end
+
   # Spanish
   def self.all(text)
     begin
@@ -88,8 +107,9 @@ class Extract
             :text                => s.text.content,
             :words               => syntax(s.text.content),
             :words_count         => syllables.size,
-            :syllables           => syllables(s.text.content),
+            :syllables           => syllables,
             :syllables_count     => syllables.flatten.size,
+            :syllables_assonance => assonance(syllables),
             :sentiment_score     => s.sentiment.score,
             :sentiment_magnitude => s.sentiment.magnitude
           }
@@ -115,8 +135,9 @@ class Extract
           :text                => s.text.content,
           :words               => syntax(s.text.content),
           :words_count         => syllables.size,
-          :syllables           => syllables(s.text.content),
+          :syllables           => syllables,
           :syllables_count     => syllables.flatten.size,
+          :syllables_assonance => assonance(syllables),
           :sentiment_score     => s.sentiment.score,
           :sentiment_magnitude => s.sentiment.magnitude
         }

@@ -1,19 +1,8 @@
 #!/usr/bin/env ruby
 
-# require 'rubygems'
-# require 'bundler'
-# Bundler.require
-# Dotenv.load
-#
-# Dir["./lib/*.rb"].each { |file| require file }
+require 'rubygems'
+require 'bundler'
+Bundler.require
+Dotenv.load
 
-str = "mión"
-out = str.scan(/[aeouiáéíóú]/)
-
-str = str.gsub('á', 'a')
-str = str.gsub('é', 'e')
-str = str.gsub('í', 'i')
-str = str.gsub('ó', 'o')
-str = str.gsub('ú', 'u')
-
-p str
+Dir["./lib/*.rb"].each { |file| require file }
