@@ -11,6 +11,6 @@
 - [x] Divide by commas too
 - [x] Seed the database with Spanish data
 - [x] Create assonance rhyme
-- [ ] Create consonance rhyme
-- [ ] Try sentiment gradient
+- [x] Create consonance rhyme
+- [x] Try sentiment gradient
 - [ ] Pretty print

@@ -7,12 +7,19 @@ Dotenv.load
 
 Dir["./lib/*.rb"].each { |file| require file }
 
-sentences = Sentence.where(:syllables_count => 8)
+# sentences = Sentence.where(:syllables_count => 0..100).group(:rhyme_consonance)
 
-# sentences = sentences.all(Sequel.like(:rhyme_consonance, '%i|o%'))
+sentences = Sentence.where(:syllables_count => 0..100).where(Sequel.like(:rhyme_consonance, '%ir%'))
 
-sentences = sentences.all(:sort => :rhyme_consonance)
+rhyme = "%a|a%"
+sentences = Sentence.where(:syllables_count => 6)
+                    .where(Sequel.like(:rhyme_assonance, rhyme))
+                    .where(:sentiment_score => 0...1)
+                    .where{sentiment_magnitude > 0.2}
+                    .order(Sequel.desc(:sentiment_score))
+
+# sentences = Sentence.where(Sequel.like(:text, '%servicio%') )
 
 sentences.each do |sentence|
-  p "#{sentence.rhyme_consonance}"
+  printf "%-30s %s\n", '%02d  ' % sentence.syllables_count + sentence.text, "(#{Review.first(:id => sentence.review_id).author})"
 end
