@@ -14,7 +14,7 @@ files = ['./data/puerta-del-sol/upper.html',
          './data/puerta-del-sol/helpful.html']
 
 files.each do |file|
-  puts "=====> Import #{name}"
+  puts "=====> Import #{file}"
 
   thing  = Thing.save({
     :name => name,

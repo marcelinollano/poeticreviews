@@ -79,18 +79,51 @@ class Extract
     vowels
   end
 
+  def self.replace_vowels(str)
+    str.gsub!('á', 'a')
+    str.gsub!('é', 'e')
+    str.gsub!('í', 'i')
+    str.gsub!('ó', 'o')
+    str.gsub!('ú', 'u')
+    str
+  end
+
   # Spanish
   def self.assonance(syllables)
     vowels = String.new
     vowels << find_vowels(syllables.flatten[-2][:text])
     vowels << "|"
     vowels << find_vowels(syllables.flatten[-1][:text])
-    vowels.gsub!('á', 'a')
-    vowels.gsub!('é', 'e')
-    vowels.gsub!('í', 'i')
-    vowels.gsub!('ó', 'o')
-    vowels.gsub!('ú', 'u')
-    vowels
+    vowels = replace_vowels(vowels)
+  end
+
+  def self.consonance(syllables)
+    vowels = String.new
+    last        = syllables.flatten[-1]
+    before_last = syllables.flatten[-2]
+
+    if last[:stressed] == true
+      vowel = find_vowels(last[:text])[-1]
+      split = last[:text].split(vowel)
+      if split.size > 1
+        vowels << vowel
+        vowels << last[:text].split(vowel)[-1]
+      else
+        vowels << vowel
+      end
+    else
+      vowel = find_vowels(before_last[:text])[-1]
+      split = before_last[:text].split(vowel)
+      if split.size > 1
+        vowels << vowel
+        vowels << before_last[:text].split(vowel)[-1]
+      else
+        vowels << vowel
+      end
+      vowels << "|"
+      vowels << syllables.flatten[-1][:text]
+    end
+    vowels = replace_vowels(vowels)
   end
 
   # Spanish
@@ -110,7 +143,7 @@ class Extract
             :syllables           => syllables,
             :syllables_count     => syllables.flatten.size,
             :rhyme_assonance     => assonance(syllables),
-            :rhyme_consonance    => syllables.flatten[-1][:text],
+            :rhyme_consonance    => consonance(syllables),
             :sentiment_score     => s.sentiment.score,
             :sentiment_magnitude => s.sentiment.magnitude
           }
@@ -139,7 +172,7 @@ class Extract
           :syllables           => syllables,
           :syllables_count     => syllables.flatten.size,
           :rhyme_assonance     => assonance(syllables),
-          :rhyme_consonance    => syllables.flatten[-1][:text],
+          :rhyme_consonance    => consonance(syllables),
           :sentiment_score     => s.sentiment.score,
           :sentiment_magnitude => s.sentiment.magnitude
         }

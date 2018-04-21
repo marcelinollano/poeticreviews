@@ -7,34 +7,12 @@ Dotenv.load
 
 Dir["./lib/*.rb"].each { |file| require file }
 
-def find_vowels(str)
-  vowels = str['text'].scan(/[aeouiáéíóú]/).join('')
-  vowels
-end
-
-def sorting(sentence)
-  array = Array.new
-  array << find_vowels(sentence.syllables.flatten[-2])
-  array << find_vowels(sentence.syllables.flatten[-1])
-  array << sentence.id
-  array << sentence.text
-  array << sentence.sentiment_score
-  array << sentence.sentiment_magnitude
-  array
-end
-
 sentences = Sentence.where(:syllables_count => 8)
 
-array = Array.new
-sentences.each_with_index do |sentence, i|
-  array[i] = sorting(sentence)
-end
+# sentences = sentences.all(Sequel.like(:rhyme_consonance, '%i|o%'))
 
-array.each_with_index do |a, i|
-  puts array[i][0]
-end
+sentences = sentences.all(:sort => :rhyme_consonance)
 
-# sentences = Sentence.where(Sequel.like(:text, '%20%'))
-# sentences.each do |sentence|
-#   p "#{sentence.text}"
-# end
+sentences.each do |sentence|
+  p "#{sentence.rhyme_consonance}"
+end
