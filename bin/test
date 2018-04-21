@@ -6,3 +6,8 @@ Bundler.require
 Dotenv.load
 
 Dir["./lib/*.rb"].each { |file| require file }
+
+
+sentence = Sentence.where(:id => 33).first
+
+p Extract.last_word(sentence.words)

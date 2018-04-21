@@ -33,6 +33,8 @@ DB.create_table?(:sentences) do
   Integer  :review_id
   Text     :text
   Text     :words_json
+  String   :words_first
+  String   :words_last
   Integer  :words_count
   Text     :syllables_json
   Integer  :syllables_count

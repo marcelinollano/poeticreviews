@@ -97,6 +97,7 @@ class Extract
     vowels = replace_vowels(vowels)
   end
 
+  # Spanish
   def self.consonance(syllables)
     vowels = String.new
     last        = syllables.flatten[-1]
@@ -126,6 +127,28 @@ class Extract
     vowels = replace_vowels(vowels)
   end
 
+  # Multilingual
+  def self.first_word(words)
+    words = words.to_a
+    if words[0][:tag] == :PUNCT
+      word = words[1][:text]
+    else
+      word = words[0][:text]
+    end
+    word.capitalize
+  end
+
+  # Multilingual
+  def self.last_word(words)
+    words = words.to_a
+    if words[-1][:tag] == :PUNCT
+      word = words[-2][:text]
+    else
+      word = words[-1][:text]
+    end
+    word
+  end
+
   # Spanish
   def self.all(text)
     begin
@@ -136,9 +159,12 @@ class Extract
       response.sentences.each do |s|
         unless s.nil?
           syllables = syllables(s.text.content)
+          words     = syntax(s.text.content)
           sentence = {
             :text                => s.text.content,
-            :words               => syntax(s.text.content),
+            :words               => words,
+            :words_first         => first_word(words),
+            :words_last          => last_word(words),
             :words_count         => syllables.size,
             :syllables           => syllables,
             :syllables_count     => syllables.flatten.size,
@@ -147,6 +173,7 @@ class Extract
             :sentiment_score     => s.sentiment.score,
             :sentiment_magnitude => s.sentiment.magnitude
           }
+          # puts first_word(words)
           sentences << sentence
         end
       end
@@ -165,9 +192,12 @@ class Extract
       s = response.sentences.first
       unless s.nil?
         syllables = syllables(s.text.content)
+        words     = syntax(s.text.content)
         sentence = {
           :text                => s.text.content,
-          :words               => syntax(s.text.content),
+          :words               => words,
+          :words_first         => first_word(words),
+          :words_last          => last_word(words),
           :words_count         => syllables.size,
           :syllables           => syllables,
           :syllables_count     => syllables.flatten.size,
