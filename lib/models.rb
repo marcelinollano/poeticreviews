@@ -57,7 +57,8 @@ class Review < Sequel::Model
           :words_count         => sentence[:words_count],
           :syllables_json      => sentence[:syllables].to_json,
           :syllables_count     => sentence[:syllables_count],
-          :syllables_assonance => sentence[:syllables_assonance],
+          :rhyme_assonance     => sentence[:rhyme_assonance],
+          :rhyme_consonance    => sentence[:rhyme_consonance],
           :sentiment_score     => sentence[:sentiment_score],
           :sentiment_magnitude => sentence[:sentiment_magnitude]
         }
@@ -78,7 +79,8 @@ class Review < Sequel::Model
             :words_count         => sentence[:words_count],
             :syllables_json      => sentence[:syllables].to_json,
             :syllables_count     => sentence[:syllables_count],
-            :syllables_assonance => sentence[:syllables_assonance],
+            :rhyme_assonance     => sentence[:rhyme_assonance],
+            :rhyme_consonance    => sentence[:rhyme_consonance],
             :sentiment_score     => sentence[:sentiment_score],
             :sentiment_magnitude => sentence[:sentiment_magnitude]
           }

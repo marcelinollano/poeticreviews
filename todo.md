@@ -10,7 +10,7 @@
 - [x] Translate just to Spanish
 - [x] Divide by commas too
 - [x] Seed the database with Spanish data
-- [ ] Create assonance rhyme
+- [x] Create assonance rhyme
 - [ ] Create consonance rhyme
 - [ ] Try sentiment gradient
 - [ ] Pretty print

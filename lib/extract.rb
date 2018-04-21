@@ -109,7 +109,8 @@ class Extract
             :words_count         => syllables.size,
             :syllables           => syllables,
             :syllables_count     => syllables.flatten.size,
-            :syllables_assonance => assonance(syllables),
+            :rhyme_assonance     => assonance(syllables),
+            :rhyme_consonance    => syllables.flatten[-1][:text],
             :sentiment_score     => s.sentiment.score,
             :sentiment_magnitude => s.sentiment.magnitude
           }
@@ -137,7 +138,8 @@ class Extract
           :words_count         => syllables.size,
           :syllables           => syllables,
           :syllables_count     => syllables.flatten.size,
-          :syllables_assonance => assonance(syllables),
+          :rhyme_assonance     => assonance(syllables),
+          :rhyme_consonance    => syllables.flatten[-1][:text],
           :sentiment_score     => s.sentiment.score,
           :sentiment_magnitude => s.sentiment.magnitude
         }

@@ -36,7 +36,8 @@ DB.create_table?(:sentences) do
   Integer  :words_count
   Text     :syllables_json
   Integer  :syllables_count
-  String   :syllables_assonance
+  String   :rhyme_assonance
+  String   :rhyme_consonance
   Float    :sentiment_score
   Float    :sentiment_magnitude
   DateTime :created_at
