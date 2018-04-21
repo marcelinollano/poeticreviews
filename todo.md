@@ -14,4 +14,4 @@
 - [x] Create consonance rhyme
 - [x] Try sentiment gradient
 - [x] Pretty print
-- [ ] Compose something
+- [x] Compose something

@@ -29,3 +29,13 @@ contents = file.read
 json = JSON.parse(contents)
 puts json['result']['reviews'].size
 ```
+
+### Queries
+
+```ruby
+sentences = Sentence.where(:syllables_count => 20)
+                    .where(Sequel.like(:rhyme_assonance, rhyme))
+                    .where(:sentiment_score => 0...1)
+                    .where{sentiment_magnitude > 0}
+                    .order(Sequel.desc(:sentiment_score)).all
+```

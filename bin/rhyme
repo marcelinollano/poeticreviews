@@ -5,24 +5,30 @@ require 'bundler'
 Bundler.require
 Dotenv.load
 
-Dir["./lib/*.rb"].each { |file| require file }
+require './lib/models.rb'
 
-# sentences = Sentence.where(:syllables_count => 0..100).group(:rhyme_consonance)
+syllables_count = 10
+sentiment_score = -1...1
+type            = 'assonance'
 
-sentences = Sentence.where(:syllables_count => 0..100).where(Sequel.like(:rhyme_consonance, '%ir%'))
+rhymes = Sentence.where(:syllables_count => syllables_count)
+                 .where(:sentiment_score => sentiment_score)
+                 .group_and_count(:"rhyme_#{type}").all
 
-rhyme = "%a|i%"
+rhymes.each do |rhyme|
+  if rhyme[:count] > 2
+    sentences = Sentence.where(:syllables_count => syllables_count)
+                        .where(Sequel.like(:"rhyme_#{type}", rhyme[:"rhyme_#{type}"]))
+                        .where(:sentiment_score => sentiment_score)
+                        .order(Sequel.desc(:sentiment_score)).all
 
-sentences = Sentence.where(:syllables_count => 20)
-                    .where(Sequel.like(:rhyme_assonance, rhyme))
-                    .where(:sentiment_score => 0...1)
-                    .where{sentiment_magnitude > 0}
-                    .order(Sequel.desc(:sentiment_score)).all
-
-# sentences = Sentence.where(Sequel.like(:text, '%servicio%') )
-
-2.times.each do |i|
-  unless sentences[i].nil?
-    printf "%-40s %s\n", '%02d  ' % sentences[i].syllables_count + sentences[i].text, "(#{Review.first(:id => sentences[i].review_id).author})"
+    score = 0
+    sentences.each do |sentence|
+      printf "%-40s %s\n", sentence.text, "(#{Review.first(:id => sentence.review_id).author})"
+      score += sentence.sentiment_score
+    end
+    puts "------------------------------------------------------------------------------------------"
+    puts "Sílabas: #{syllables_count}, Rima: #{rhyme[:"rhyme_#{type}"]}, Puntuación: #{score}"
+    puts
   end
 end
