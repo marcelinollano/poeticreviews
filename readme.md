@@ -4,4 +4,4 @@ Generates poems in Spanish from Google Maps, [see some examples here](doc/poemit
 
 <img src="doc/poetry-slash.png" width="400px">
 
-Created for Libros mutantes, April 2018. La casa encendida, Madrid.
+Created for [Libros mutantes](http://librosmutantes.com), April 2018. La casa encendida, Madrid.
