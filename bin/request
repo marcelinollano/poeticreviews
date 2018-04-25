@@ -7,11 +7,11 @@ Dotenv.load
 
 Dir["./lib/*.rb"].each { |file| require file }
 
-name  = 'Muro de las lamentaciones'
-url   = 'https://www.google.com/maps/place/Muro+de+las+Lamentaciones/@31.7767189,35.2323198,17z/data=!3m1!4b1!4m5!3m4!1s0x150329c939ceab8f:0x83ad5efed1777179!8m2!3d31.7767189!4d35.2345085'
-files = ['./data/muro-de-las-lamentaciones/upper.html',
-         './data/muro-de-las-lamentaciones/downer.html',
-         './data/muro-de-las-lamentaciones/helpful.html']
+name  = 'Puerta del Sol'
+url   = 'https://www.google.com/maps/place/Puerta+del+Sol/@40.4169514,-3.7057225,17z/data=!3m1!4b1!4m5!3m4!1s0xd42287e19e23f5f:0xcec2a0e4d9bed6fb!8m2!3d40.4169473!4d-3.7035285'
+files = ['./data/puerta-del-sol/upper.html',
+         './data/puerta-del-sol/downer.html',
+         './data/puerta-del-sol/helpful.html']
 
 files.each do |file|
   puts "=====> Import #{file}"

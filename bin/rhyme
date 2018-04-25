@@ -7,28 +7,35 @@ Dotenv.load
 
 require './lib/models.rb'
 
-syllables_count = 10
-sentiment_score = -1...1
+syllables_count = 9
+sentiment_score = -1...0
 type            = 'assonance'
 
-rhymes = Sentence.where(:syllables_count => syllables_count)
-                 .where(:sentiment_score => sentiment_score)
-                 .group_and_count(:"rhyme_#{type}").all
 
-rhymes.each do |rhyme|
-  if rhyme[:count] > 2
-    sentences = Sentence.where(:syllables_count => syllables_count)
-                        .where(Sequel.like(:"rhyme_#{type}", rhyme[:"rhyme_#{type}"]))
-                        .where(:sentiment_score => sentiment_score)
-                        .order(Sequel.desc(:sentiment_score)).all
-
-    score = 0
-    sentences.each do |sentence|
-      printf "%-40s %s\n", sentence.text, "(#{Review.first(:id => sentence.review_id).author})"
-      score += sentence.sentiment_score
-    end
-    puts "------------------------------------------------------------------------------------------"
-    puts "Sílabas: #{syllables_count}, Rima: #{rhyme[:"rhyme_#{type}"]}, Puntuación: #{score}"
-    puts
-  end
+thing = Thing.where(:name => 'Muro de las lamentaciones').first
+reviews = thing.reviews
+reviews.each do |review|
+  p "#{review.sentiment_score} #{review.text}"
 end
+
+# rhymes = Sentence.where(:syllables_count => syllables_count)
+#                  .where(:sentiment_score => sentiment_score)
+#                  .group_and_count(:"rhyme_#{type}").all
+#
+# rhymes.each do |rhyme|
+#   if rhyme[:count] > 2
+#     sentences = Sentence.where(:syllables_count => syllables_count)
+#                         .where(Sequel.like(:"rhyme_#{type}", rhyme[:"rhyme_#{type}"]))
+#                         .where(:sentiment_score => sentiment_score)
+#                         .order(Sequel.desc(:sentiment_score)).all
+#
+#     score = 0
+#     sentences.each do |sentence|
+#       printf "%-40s %s\n", sentence.text, "(#{Review.first(:id => sentence.review_id).author})"
+#       score += sentence.sentiment_score
+#     end
+#     puts "------------------------------------------------------------------------------------------"
+#     puts "Sílabas: #{syllables_count}, Rima: #{rhyme[:"rhyme_#{type}"]}, Puntuación: #{score}"
+#     puts
+#   end
+# end

@@ -7,7 +7,7 @@ Dotenv.load
 
 Dir["./lib/*.rb"].each { |file| require file }
 
-sentence = "Todo nos parece terrible"
+sentence = "Esto es una mierda"
 
 p Extract.syntax(sentence)
 puts
