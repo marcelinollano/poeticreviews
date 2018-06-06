@@ -30,6 +30,7 @@ end
 
 DB.create_table?(:sentences) do
   primary_key :id
+  Integer  :thing_id
   Integer  :review_id
   Text     :text
   Text     :words_json

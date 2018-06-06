@@ -5,14 +5,13 @@ require 'bundler'
 Bundler.require
 Dotenv.load
 
-Dir["./lib/*.rb"].each { |file| require file }
+libs = "#{Dir.pwd}/lib/*.rb"
+Dir[libs].each { |lib| require lib }
 
-sentence = "Esto es una mierda"
+sentence = "El gobierno es corrupto"
 
-p Extract.syntax(sentence)
+pp Extract.syntax(sentence)
 puts
+pp Extract.syllables(sentence)
 puts
-p Extract.syllables(sentence)
-puts
-puts
-p Extract.sentiment(sentence)
+pp Extract.sentiment(sentence)

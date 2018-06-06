@@ -4,6 +4,7 @@ DB = Sequel.connect("sqlite://db/db.sqlite3")
 
 class Thing < Sequel::Model
   one_to_many :reviews
+  one_to_many :sentences
   plugin(:timestamps, :update_on_create => true)
   plugin(:validation_helpers)
 
@@ -51,6 +52,7 @@ class Review < Sequel::Model
     unless sentences.nil?
       sentences.each do |sentence|
         params = {
+          :thing_id            => thing_id,
           :review_id           => id,
           :text                => sentence[:text].capitalize,
           :words_json          => sentence[:words].to_json,
@@ -75,6 +77,7 @@ class Review < Sequel::Model
         sentence = Extract.first(sentence)
         unless sentence.nil?
           params = {
+            :thing_id            => thing_id,
             :review_id           => id,
             :text                => sentence[:text].capitalize,
             :words_json          => sentence[:words].to_json,
@@ -97,6 +100,7 @@ class Review < Sequel::Model
 end
 
 class Sentence < Sequel::Model
+  many_to_one :thing
   many_to_one :review
   plugin(:timestamps, :update_on_create => true)
   plugin(:validation_helpers)
