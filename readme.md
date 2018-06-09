@@ -1,10 +1,20 @@
 # Poetic Reviews
 
-Generates poems in Spanish from Google Maps reviews. This project was created
+Generates poems in Spanish from Google Maps reviews.
 
-- 🌞 [**Poemitas al Sol**](doc/poemitas-al-sol.md) ([PDF](doc/poemitas-al-sol.pdf)). Poems dedicated to Plaza Puerta del Sol in Madrid. Read live at [Libros mutantes](http://librosmutantes.com/poetry-slash/), April 2018.
+You can read some of the poems generated:
 
-- 🌇 [**Poemitas de la ciudad**](doc/poemitas-de-la-ciudad.md) ([PDF](doc/poemitas-de-la-ciudad.pdf)). Poems dedicated to Plaza Puerta del Sol, Arahy Restaurant, Primark and Desperate Literature in Madrid. Read live at [Desperate Literature](https://desperateliterature.com), June 2018.
+- 🌞 [**Poemitas al Sol**](doc/poemitas-al-sol.md) ([PDF](doc/poemitas-al-sol.pdf)). Poems dedicated to Plaza Puerta del Sol in Madrid.
+
+  Read live at [Libros mutantes](http://librosmutantes.com/poetry-slash/), April 2018.
+
+- 🌇 [**Poemitas de la ciudad**](doc/poemitas-de-la-ciudad.md) ([PDF](doc/poemitas-de-la-ciudad.pdf)). Poems dedicated to Plaza Puerta del Sol, Arahy Restaurant, Primark and Desperate Literature in Madrid.
+
+  Read live at [Desperate Literature](https://desperateliterature.com), June 2018.
+
+<img src="doc/poetry-slash.png" width="400px">
+
+_Image: Libros Mutantes / Poetry Slash_
 
 ### Install and use
 
