@@ -2,21 +2,21 @@
 
 Generates poems in Spanish from Google Maps reviews.
 
-You can read some of the poems generated:
-
-- 🌞 [**Poemitas al Sol**](doc/poemitas-al-sol.md) ([PDF](doc/poemitas-al-sol.pdf)). Poems dedicated to Plaza Puerta del Sol in Madrid.
-
-  Read live at [Libros mutantes](http://librosmutantes.com/poetry-slash/), April 2018.
-
-- 🌇 [**Poemitas de la ciudad**](doc/poemitas-de-la-ciudad.md) ([PDF](doc/poemitas-de-la-ciudad.pdf)). Poems dedicated to Plaza Puerta del Sol, Arahy Restaurant, Primark and Desperate Literature in Madrid.
-
-  Read live at [Desperate Literature](https://desperateliterature.com), June 2018.
-
-<img src="doc/poetry-slash.png" width="400px">
+<img src="doc/poetry-slash.png" width="350px">
 
 _Image: Libros Mutantes / Poetry Slash_
 
-### Install and use
+You can read some of the generated poems:
+
+- 🌞 [**Poemitas al Sol**](doc/poemitas-al-sol.md) ([PDF](doc/poemitas-al-sol.pdf)). Poems dedicated to Plaza Puerta del Sol in Madrid. A mix of positive and negative feelings about the center of Spain.
+
+  _Read live at [Libros mutantes](http://librosmutantes.com/poetry-slash/), April 2018._
+
+- 🌇 [**Poemitas de la ciudad**](doc/poemitas-de-la-ciudad.md) ([PDF](doc/poemitas-de-la-ciudad.pdf)). Poems dedicated to Plaza Puerta del Sol, Arahy Restaurant (Mariano Rajoy spent six hours here, so it must be a terrific place), Gran Via's Primark and Desperate Literature in Madrid.
+
+  _Read live at [Desperate Literature](https://desperateliterature.com), June 2018._
+
+## Install and compose
 
 Don't expect a great user experience on this project. It was a quick hack, but it is still very usable to me.
 
