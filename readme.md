@@ -6,7 +6,7 @@ Generates poems in Spanish from Google Maps reviews. You can read some sample ge
 
   <img src="doc/poetry-slash.png" width="350px">
 
-- [**Poemitas de la ciudad**](doc/poemitas-de-la-ciudad.md) ([PDF](doc/poemitas-de-la-ciudad.pdf)). Poems dedicated to: Plaza Puerta del Sol, Arahy Restaurant (Mariano Rajoy spent six hours here, so it must be a terrific place), Gran Via's Primark and Desperate Literature in Madrid. Read live at [Desperate Literature](https://desperateliterature.com), June 2018.
+- [**Poemitas de la ciudad**](doc/poemitas-de-la-ciudad.md) ([PDF](doc/poemitas-de-la-ciudad.pdf)). Poems dedicated to: Plaza Puerta del Sol, Gran Via's Primark, Arahy Restaurant (Mariano Rajoy spent six hours here, it must be a terrific place) and Desperate Literature in Madrid. Read live at [Desperate Literature](https://desperateliterature.com), June 2018.
 
 ## Install and compose
 
