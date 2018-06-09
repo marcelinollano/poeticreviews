@@ -1,5 +1,4 @@
-# Translate
-
+# Translate helpers
 require "google/cloud/translate"
 
 class Translate

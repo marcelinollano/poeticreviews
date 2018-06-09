@@ -6,12 +6,12 @@ Bundler.require
 Dotenv.load
 
 # Options
-name              = 'Primark'       # name of the thing
-type              = 'consonance'     # consonance | assonance
-syllables_count   = 6              # syllables per line
-stanzas_size      = 2               # lines per stanza
-sentiment_score   = -1...1          # -1 | 1
-sentiment_order   = 'upper'        # upper | downer
+name              = 'Puerta del sol' # name of the place
+type              = 'assonance'      # consonance | assonance
+syllables_count   = 7                # syllables per line
+stanzas_size      = 4                # lines per stanza
+sentiment_score   = -1...1           # -1 | 1
+sentiment_order   = 'downer'          # upper | downer
 
 # Loads the database
 require "#{Dir.pwd}/lib/models.rb"

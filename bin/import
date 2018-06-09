@@ -9,25 +9,9 @@ Dir[libs].each { |lib| require lib }
 
 places = [
   {
-    :name  => 'Arahy restaurante',
-    :slug  => 'arahy-restaurante',
-    :url   => 'https://goo.gl/maps/No4fpQKYNft'
-  },
-  { :name  => 'Puerta del sol',
+    :name  => 'Puerta del sol',
     :slug  => 'puerta-del-sol',
     :url   => 'https://goo.gl/maps/DrHCfet1W3q'
-  },
-  { :name  => 'Muro de las lamentaciones',
-    :slug  => 'muro-de-las-lamentaciones',
-    :url   => 'https://goo.gl/maps/e41gTF7aBY22'
-  },
-  { :name  => 'Primark',
-    :slug  => 'primark',
-    :url   => 'https://goo.gl/maps/MWCkh2Kg24v'
-  },
-  { :name  => 'Desperate literature',
-    :slug  => 'desperate-literature',
-    :url   => 'https://goo.gl/maps/ARnLUwFdT332'
   }
 ]
 

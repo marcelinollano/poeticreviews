@@ -1,5 +1,4 @@
-# Models
-
+# Models definition
 DB = Sequel.connect("sqlite://db/db.sqlite3")
 
 class Thing < Sequel::Model

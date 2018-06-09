@@ -1,5 +1,4 @@
-# Process
-
+# Extract sentiment, syllables, vowels, etc.
 require "google/cloud/language"
 
 class Extract

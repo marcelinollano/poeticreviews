@@ -1,5 +1,4 @@
-# Scrap
-
+# Scraps GoogleMaps files
 class GoogleMaps
   def self.read(file)
     file = File.open(file, "rb")

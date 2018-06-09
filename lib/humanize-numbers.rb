@@ -1,5 +1,4 @@
 # Humanize numbers <https://github.com/gedera/humanize_numbers>
-
 class Humanize
   def number(number)
 
