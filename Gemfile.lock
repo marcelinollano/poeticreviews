@@ -1,8 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     chronic (0.10.2)
     concurrent-ruby (1.1.5)
     curb (0.9.9)
@@ -197,7 +197,7 @@ GEM
     nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
     os (1.0.0)
-    public_suffix (3.0.3)
+    public_suffix (4.0.6)
     rake (12.3.3)
     rbtree (0.4.2)
     representable (3.0.4)
